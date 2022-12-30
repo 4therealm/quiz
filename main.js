@@ -33,8 +33,9 @@ let shuffledQuestions, currentQuestionIndex
 var currentScore = 0;
 var finalScore;
 var question_counter = 0;
-var timeLeft = 60;
+var timeLeft = 15;
 var selectedAnswer;
+var countdown;
 
 //event.listeners
 
@@ -55,19 +56,12 @@ function start_quiz(){
     lbButton.classList.add('hide')
     shuffledQuestions = question_objects.sort(() =>Math.random() - .5); //need help understanding this
     currentQuestionIndex = 0;
-    // timer_start() //should the timer be inside the function?
-    // next_question()
-    setInterval(function(){
-        timeLeft--;
-        clock.innerHTML = timeLeft;
-         below_10()
-     
-      if(timeLeft <= 0)
-            clearInterval(countdown);
-            },1000);
+    countdown = setInterval(function(){
+        timeLeft--; clock.innerHTML = timeLeft;
+      if(timeLeft <= 0)clearInterval(countdown);below_10()},1000);
     console.log("bitch");
 }
-
+//clock related functions
 function below_10(){
     if(timeLeft <= 10)
       clock.classList.add('below10');

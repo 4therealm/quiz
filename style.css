@@ -26,7 +26,14 @@ p{
 .btn{
 
 }
-
+#clock{
+    font-size:2rem;
+  }
+  
+  .below10{
+    color: red;
+  }
+  
 .flex-column{
     display: flex;
     flex-direction: column;
