@@ -54,7 +54,7 @@ p{
     border: 10px solid green;
 }
 
-.hud{
+.hud-box{
     min-height: 7vh;
     justify-content: space-around;
     align-items: center;
@@ -88,7 +88,7 @@ p{
 }
 
 
-.control-btns{
+.control-box{
 min-height: 10vh;
 }
 
