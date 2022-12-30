@@ -9,6 +9,9 @@ const lbButton = document.getElementById('lb-btn')
 
 //elements
 //do queryselector instead
+const clockElement = document.getElementById('clock')
+const progressElement = document.getElementById('progress')
+const scoreElement = document.getElementById('score')
 const quizElement = document.querySelector(".quiz-container")
 const hudElement = document.querySelector(".hud-box")
 const questionElement = document.querySelector(".question-box")
@@ -22,7 +25,7 @@ let currentQuestionIndex
 
 let Score = 0;
 let finalScore;
-let question_counter = 0;
+let question_counter
 let timeLeft = 15;
 let selectedAnswer;
 let countdown;
@@ -68,7 +71,8 @@ function start_style_adjust(params) {
 
 //log question objects first, then after shufflld questions
 function start_quiz(){
-    currentQuestionIndex = 0;
+    question_counter = 0;
+    Score = 0;
     start_style_adjust()
     timer()
     console.log("quiz has started")
@@ -76,6 +80,9 @@ function start_quiz(){
 }
 
 function resetState(){
+    question_counter++
+    question_objects.splice(currentQuestionIndex, 1)
+    console.log(currentQuestionIndex)
     while (answerElement.firstChild){
       answerElement.removeChild
       (answerElement.firstChild)
@@ -86,9 +93,10 @@ function resetState(){
 function next_question(){
     resetState()
     console.log("next-question fired")
+    // question_objects.splice(currentQuestionIndex, 1)
     random()
     show_question(question_objects[currentQuestionIndex])   
-}
+  console.log("current question index" + currentQuestionIndex)}
 
 function random() {
     currentQuestionIndex = Math.floor(Math.random()*question_objects.length);
@@ -120,17 +128,19 @@ function select_answer(e){
       setStatusClass(button, button.dataset.correct)
     })
     if(correct){
-      console.log("you got it right")
+        Score++
+       
+      console.log("you got it right" + Score)
     }
-    if (question_objects.length > currentQuestionIndex + 1){
-      next_question()
+    if (question_counter < MAX_QUESTIONS){
+       next_question()
     
     
-    } else {
-      startButton.innerText = 'Restart'
-      startButton.classList.remove('hide')
+    } else {  
+      playButton.innerText = 'Restart'
+      playButton.classList.remove('hide')
       saveButton.classList.remove('hide')
-      rankingButton.classList.remove('hide')
+      lbButton.classList.remove('hide')
     }}
     
     function setStatusClass(element, correct) {
