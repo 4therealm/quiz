@@ -11,19 +11,18 @@
     <section class="quiz-container flex-column">
         <!-- will always be shown -->
 
-        <div class="hud-box flex-row" id="hud">
+        <div class="hud-box flex-row hide">
             <!-- hidden on load, visible only while game is active -->
             <p class="hud-items" id="clock">60</p>
             <p class="hud-items" id="progress">0/3</p>
             <p class="hud-items" id="score">score</p>
         </div>
 
-        <div class="question-box" id="question">
-            <!-- hidden on load, visible only while game is active -->
-            current_question Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit debitis placeat veritatis laboriosam, corrupti earum similique non architecto vel, harum deleniti perspiciatis eius molestias reprehenderit voluptate cupiditate nostrum! Id, ab.
-        </div>
+        <div class="question-box hide">
+         <p></p> 
+                 </div>
 
-        <div class="answer-box flex-row" id="answer">
+        <div class="answer-box flex-row hide">
             <!-- hidden on load, visible only while game is active -->
             <button class="answer-btns btn">A</button>
             <button class="answer-btns btn">B</button>
@@ -31,7 +30,7 @@
         </div>
 
 <!-- play and leader board visible on load but hidden once game starts, at quiz end play changes to restart save and leaderboard become visible -->
-        <div class="control-box flex-row" id="control">
+        <div class="control-box flex-row">
             <button class="btn" id="play-btn">Play</button>
             <button class="btn" id="lb-btn">Leaderboard</button>
             <button class="btn" id="save-btn">Save</button>

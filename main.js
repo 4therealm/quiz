@@ -1,16 +1,6 @@
-//three main functions:
+
 //1. start_quiz:
-    //initiated by startButtonElement
-    //hud-box,question-box and answer-box become visible
-    // next_question() generates the content to fill question-box & answer-box
-
-
-
-//2. next_question
-
-
-//3. select_answer
-
+// next_question() generates the content to fill question-box & answer-box
 
 //control-box buttons
 const playButton = document.getElementById('play-btn')
@@ -18,28 +8,107 @@ const saveButton = document.getElementById('save-btn')
 const lbButton = document.getElementById('lb-btn')
 
 //elements
-
-const quizElement = document.getElementsByClassName('quiz-container')
-const hudElement = document.getElementsByClassName('hud-box')
-const questionElement = document.getElementsByClassName('question-box')
-const answerElement = document.getElementsByClassName('answer-box')
-const controlElement = document.getElementsByClassName('control-box')
-const lbElement = document.getElementsByClassName('lb-box')
-
+//do queryselector instead
+const quizElement = document.querySelector(".quiz-container")
+const hudElement = document.querySelector(".hud-box")
+const questionElement = document.querySelector(".question-box")
+const answerElement = document.querySelector(".answer-box")
+const controlElement = document.querySelector(".control-box")
+const lbElement = document.querySelector(".lb-box")
+const answerButtons = document.querySelector(".answer-btns")
 
 let shuffledQuestions, currentQuestionIndex
 // = undefined
 
-var currentScore = 0;
-var finalScore;
-var question_counter = 0;
-var timeLeft = 15;
-var selectedAnswer;
-var countdown;
+let Score = 0;
+let finalScore;
+let question_counter = 0;
+let timeLeft = 15;
+let selectedAnswer;
+let countdown;
+const MAX_QUESTIONS = 4;
 
 //event.listeners
 
 playButton.addEventListener('click', start_quiz)
+
+function timer() {
+        countdown = setInterval(function()
+        {
+        timeLeft--; 
+        clock.innerHTML = timeLeft;
+         below_10()
+        
+      if(timeLeft <= 0){
+        clearInterval(countdown)
+        }
+       },
+       1000);
+       
+}
+function below_10(){
+    if(timeLeft <= 10)
+      clock.classList.add('below10');
+  }
+  function decrement(){
+    timeLeft = time_left - 5;
+    return countdown()
+  }    
+function start_style_adjust(params) {
+    controlElement.classList.add('hide');
+    answerElement.classList.remove('hide');
+    hudElement.classList.remove('hide');
+    questionElement.classList.remove('hide');
+}
+
+//question and relative answer is generated randomly 
+//answer is selected. if correct score++, incorrect time_left--
+//after answer is selected there will be a brief delay, then questionCounter++
+//next_question() is called
+
+//log question objects first, then after shufflld questions
+function start_quiz(){
+    start_style_adjust()
+    timer()
+    console.log("quiz has started")
+    next_question()
+}
+
+function resetState(){
+    while (answerButtons.firstChild){
+      answerButtons.removeChild
+      (answerButtons.firstChild)
+    }
+  
+   }
+
+function next_question(){
+    resetState()
+    console.log("next-question fired")
+    random()
+    show_question(question_objects[currentQuestionIndex])   
+}
+
+function random() {
+    currentQuestionIndex = Math.floor(Math.random()*question_objects.length);
+    console.log(currentQuestionIndex)
+    console.log("random fired")
+}
+
+function show_question(question) {
+    console.log("show_question fired")
+    questionElement.innerText = question_objects[currentQuestionIndex].question
+    console.log(questionElement)
+    question.answers.forEach(answer => {
+        const button = document.createElement('button')
+        button.innerText = answer.text
+        button.classList.add('btn')
+        if(answer.correct){button.dataset.correct = answer.correct}
+        // button.addEventListener('click', select_answer)
+        // answerElement.appendchild(button)
+    });
+}
+
 
 let question_objects = [
     {
@@ -76,145 +145,5 @@ let question_objects = [
         ]
       }
 ];
-    
-   
-//functions
-function below_10(){
-    if(timeLeft <= 10)
-      clock.classList.add('below10');
-  }
-  function decrement(){
-    timeLeft = time_left - 5;
-    return countdown()
-  }    
-  
-  function select_answer() {
-    
-  }
-function reset_state(params) {
-    
-}
-
-function show_question(){}
-
-//hide control-box
-//show hud-box, question-box, answer-box
-//time starts
-//question and relative answer is generated randomly 
-//answer is selected. if correct score++, incorrect time_left--
-//after answer is selected there will be a brief delay, then questionCounter++
-//next_question() is called
-function start_quiz(){
-
-    playButton.classList.add('hide')
-    saveButton.classList.add('hide')
-    lbButton.classList.add('hide')
-    shuffledQuestions = question_objects.sort(() =>Math.random() - .5); //need help understanding this
-    currentQuestionIndex = 0;
-    countdown = setInterval(function(){
-        timeLeft--; clock.innerHTML = timeLeft;
-      if(timeLeft <= 0)clearInterval(countdown);below_10()},1000);
-      //when timer reaches 0 i want to end quiz
-    console.log(shuffledQuestions.length);
-    next_question(){}
-}
-
-function next_question(){
-    currentQuestionIndex++
-    reset_state()//clears current content in Q A box and replaces with new question
-    show_question(shuffledQuestions[currentQuestionIndex])
-}
-
-function show_question(question) {
-    questionElement.innerHTML = question_objects.question
-    question.answer.forEach(answer => {
-        const button = document.createElement('button')
-        button.innerText = answer.text
-        button.classList.add('btn')
-        if(answer.correct){button.dataset.correct = answer.correct}
-        button.addEventListener('click', select_answer)
-        answerElement.appendchild(button)
-    }
-
-    )
-}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    //     let available_questions = [];
-//     let current_question = {};
-//     let score = 0;
-//     let question_counter = 0;
-    
-//     const final_score = {};
-//     const MAX_QUESTIONS = 3;
-//     const SCORE_POINTS = 100;
-
-
-// function start_game() {
-//         question_counter = 0;
-//         available_questions = [...question_objects];
-//         current_question = generate_question();
-// }
-// function generate_question() {
-//     for(let i = 0; i < available_questions; i++) {
-//         question_counter++;
-//         const generated_question = available_questions[random()];
-//         question_objects.splice(generated_question, 1);
-//         return generated_question
-//     }
-// }
-// function random() {
-//     const random_index = Math.floor(Math.random()*available_questions.length);
-//     return random_index
-// }
-// function restart_game() {
-    
-// }
