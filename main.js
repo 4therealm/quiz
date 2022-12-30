@@ -17,7 +17,7 @@ const controlElement = document.querySelector(".control-box")
 const lbElement = document.querySelector(".lb-box")
 const answerButtons = document.querySelector(".answer-btns")
 
-let shuffledQuestions, currentQuestionIndex
+let currentQuestionIndex
 // = undefined
 
 let Score = 0;
@@ -105,10 +105,50 @@ function show_question(question) {
         button.innerText = answer.text;
         button.classList.add('answer-btn');
         if (answer.correct) { button.dataset.correct = answer.correct; }
-        // button.addEventListener('click', select_answer)
+        button.addEventListener('click', select_answer)
         answerElement.appendChild(button);
+        console.log(answer.correct)
     });
 }
+
+function select_answer(e){
+    console.log("select answer fired")
+    const selectedButton = e.target
+    const correct = selectedButton.dataset.correct
+    console.log(correct)
+    Array.from(answerButtons.children).forEach(button => {
+      setStatusClass(button, button.dataset.correct)
+    })
+    if(correct){
+      console.log("you got it right")
+    }
+    if (question_objects.length > currentQuestionIndex + 1){
+      next_question()
+    
+    
+    } else {
+      startButton.innerText = 'Restart'
+      startButton.classList.remove('hide')
+      saveButton.classList.remove('hide')
+      rankingButton.classList.remove('hide')
+    }}
+    
+    function setStatusClass(element, correct) {
+        clearStatusClass(element)
+        if(correct){
+          element.classList.add('correct')
+        } else {
+          element.classList.add('incorrect')
+        }}
+      function clearStatusClass(element){
+        element.classList.remove('correct')
+        element.classList.remove('incorrect')
+      }
+
+
+
+
+
 
 
 let question_objects = [
