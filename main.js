@@ -98,7 +98,7 @@ function random() {
 
 function show_question(question) {
     console.log("show_question fired")
-    questionElement.innerText = question_objects[currentQuestionIndex].question
+    questionElement.innerHTML = question_objects[currentQuestionIndex].question
     console.log(question)
     question.answers.forEach((answer) => {
         const button = document.createElement('button');
