@@ -42,6 +42,20 @@ var countdown;
 playButton.addEventListener('click', start_quiz)
 
 
+//functions
+function below_10(){
+    if(timeLeft <= 10)
+      clock.classList.add('below10');
+  }
+  function decrement(){
+    timeLeft = time_left - 5;
+    return countdown()
+  }    
+  function next_question(){
+
+  }
+
+
 
 //hide control-box
 //show hud-box, question-box, answer-box
@@ -59,20 +73,11 @@ function start_quiz(){
     countdown = setInterval(function(){
         timeLeft--; clock.innerHTML = timeLeft;
       if(timeLeft <= 0)clearInterval(countdown);below_10()},1000);
+      //when timer reaches 0 i want to end quiz
     console.log("bitch");
 }
-//clock related functions
-function below_10(){
-    if(timeLeft <= 10)
-      clock.classList.add('below10');
-  }
-  function decrement(){
-    timeLeft = time_left - 5;
-    return countdown()
-  }    
 
 
-function next_question(){}
 
 
 

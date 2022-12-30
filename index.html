@@ -11,33 +11,33 @@
     <section class="quiz-container flex-column">
         <!-- will always be shown -->
 
-        <div class="hud-box flex-row ">
+        <div class="hud-box flex-row" id="hud">
             <!-- hidden on load, visible only while game is active -->
             <p class="hud-items" id="clock">60</p>
             <p class="hud-items" id="progress">0/3</p>
             <p class="hud-items" id="score">score</p>
         </div>
 
-        <div class="question-box ">
+        <div class="question-box" id="question">
             <!-- hidden on load, visible only while game is active -->
             current_question Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit debitis placeat veritatis laboriosam, corrupti earum similique non architecto vel, harum deleniti perspiciatis eius molestias reprehenderit voluptate cupiditate nostrum! Id, ab.
         </div>
 
-        <div class="answer-box flex-row">
+        <div class="answer-box flex-row" id="answer">
             <!-- hidden on load, visible only while game is active -->
-            <button class="answer-btns btn" data-number="1">current_question.choice1</button>
-            <button class="answer-btns btn" data-number="2">current_question.choice2</button>
+            <button class="answer-btns btn" data-number="1">A</button>
+            <button class="answer-btns btn" data-number="2">B</button>
         
         </div>
 
 <!-- play and leader board visible on load but hidden once game starts, at quiz end play changes to restart save and leaderboard become visible -->
-        <div class="control-box flex-row">
+        <div class="control-box flex-row" id="control">
             <button class="btn" id="play-btn">Play</button>
             <button class="btn" id="lb-btn">Leaderboard</button>
             <button class="btn" id="save-btn">Save</button>
         </div>
 <!-- only visible after leaderboard is pressed, following it being pressed, anyother control buttons will hid it -->
-        <div class="lb-box hide">
+        <div class="lb-box hide" id="leaderboard">
             <ul></ul>
         </div>
     </section>
