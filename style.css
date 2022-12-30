@@ -75,13 +75,14 @@ body{
 
 }
 
-.answer-btns{
+/* .answer-btn{
     min-width: 45%;
     min-height: 15vh;
     text-align: center;
+    font-size: 2rem;
     /* background-color: white;
     color: powderblue; */
-}
+/* } */ 
 
 
 .control-box .btn{

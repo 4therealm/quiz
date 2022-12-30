@@ -68,6 +68,7 @@ function start_style_adjust(params) {
 
 //log question objects first, then after shufflld questions
 function start_quiz(){
+    currentQuestionIndex = 0;
     start_style_adjust()
     timer()
     console.log("quiz has started")
@@ -75,9 +76,9 @@ function start_quiz(){
 }
 
 function resetState(){
-    while (answerButtons.firstChild){
-      answerButtons.removeChild
-      (answerButtons.firstChild)
+    while (answerElement.firstChild){
+      answerElement.removeChild
+      (answerElement.firstChild)
     }
   
    }
@@ -98,14 +99,14 @@ function random() {
 function show_question(question) {
     console.log("show_question fired")
     questionElement.innerText = question_objects[currentQuestionIndex].question
-    console.log(questionElement)
-    question.answers.forEach(answer => {
-        const button = document.createElement('button')
-        button.innerText = answer.text
-        button.classList.add('btn')
-        if(answer.correct){button.dataset.correct = answer.correct}
+    console.log(question)
+    question.answers.forEach((answer) => {
+        const button = document.createElement('button');
+        button.innerText = answer.text;
+        button.classList.add('answer-btn');
+        if (answer.correct) { button.dataset.correct = answer.correct; }
         // button.addEventListener('click', select_answer)
-        // answerElement.appendchild(button)
+        answerElement.appendChild(button);
     });
 }
 
@@ -116,9 +117,7 @@ let question_objects = [
         answers: [
           {text: '4', correct: true},
           {text: '22', correct: false},
-          {text: 'birdie', correct: false},
-          {text: '852', correct: false},
-        ]
+                  ]
       },
     
       {
