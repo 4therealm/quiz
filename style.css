@@ -1,0 +1,98 @@
+::before, ::after{
+
+}
+:root{
+
+}
+
+*{
+margin: 0;
+padding: 0;
+font-family:'Times New Roman', Times, serif;
+}
+
+body{
+    box-sizing: border-box;
+    background-color: slateblue;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.hidden{
+    display: none;
+}
+
+p{
+    outline: 2px solid whitesmoke;
+    /* text-align: center; */
+}
+
+.btn{
+
+}
+
+.flex-column{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.flex-row{
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-evenly;
+    outline: 2px solid red;
+    
+    
+}
+
+.quiz-container{
+    width: 80vw;
+    height: 75vh;
+    margin: 5vh auto;
+    border: 10px solid green;
+}
+
+.hud{
+    min-height: 7vh;
+    justify-content: space-around;
+    align-items: center;
+    /* padding: .5rem; */
+}
+
+.hud-items{
+   font-size: 2rem;
+   padding: .5rem; 
+}
+
+.question-box{
+    min-height: 15vh;
+    font-size: 1.5rem;
+    padding: 0 1rem;
+
+}
+
+.answer-box{
+    align-items: center;
+    min-height: 15vh;
+
+}
+
+.answer-btns{
+    text-align: center;
+    background-color: black;
+    color: powderblue;
+    height: 100%;
+    width: 45%;
+}
+
+
+.control-btns{
+min-height: 10vh;
+}
+
+.btn{
+    height: 100%;
+    min-width: 20%;
+}

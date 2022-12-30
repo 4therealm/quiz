@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <h1>Title</h1>
+        <p>them is the rules</p>
+    </header>
+
+    <section class="quiz-container flex-column">
+
+        <div class="hud flex-row">
+            <p class="hud-items" id="clock">60</p>
+            <p class="hud-items" id="progress">0/3</p>
+            <p class="hud-items" id="score">score</p>
+        </div>
+
+        <p class="question-box">
+            current_question Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit debitis placeat veritatis laboriosam, corrupti earum similique non architecto vel, harum deleniti perspiciatis eius molestias reprehenderit voluptate cupiditate nostrum! Id, ab.
+        </p>
+
+        <div class="answer-box flex-row">
+
+            <div class="answer-btns btn" data-number="1">current_question.choice1</div>
+            <div class="answer-btns btn" data-number="2">current_question.choice2</div>
+        
+        </div>
+
+<!-- now the onload buttons -->
+        <div class="control-btns flex-row">
+            <button class="btn" id="play" onclick="start_game()">Play</button>
+            <button class="btn" id="leaderboard-btn" onclick="show_leaderboard()">Leaderboard</button>
+            <button class="btn" id="save-btn" onclick="save_score()">Save</button>
+            <button class="btn" id="restart" onclick="restart_game()">Restart</button>
+        </div>
+
+    </section>
+
+
+
+
+
+    <footer></footer>
+    <script src="/main.js"></script>
+</body>
+</html>
