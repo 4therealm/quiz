@@ -12,7 +12,36 @@
 //3. select_answer
 
 
-function start_quiz()
+//control-box buttons
+const playButton = document.getElementById('play-btn')
+const saveButton = document.getElementById('save-btn')
+const lbButton = document.getElementById('lb-btn')
+
+//elements
+
+const quizElement = document.getElementsByClassName('quiz-container')
+const hudElement = document.getElementsByClassName('hud-box')
+const questionElement = document.getElementsByClassName('question-box')
+const answerElement = document.getElementsByClassName('answer-box')
+const controlElement = document.getElementsByClassName('control-box')
+const lbElement = document.getElementsByClassName('lb-box')
+
+
+let shuffledQuestions, currentQuestionIndex
+// = undefined
+
+var currentScore = 0;
+var finalScore;
+var question_counter = 0;
+var timeLeft = 60;
+var selectedAnswer;
+
+//event.listeners
+
+playButton.addEventListener('click', start_quiz)
+
+
+
 //hide control-box
 //show hud-box, question-box, answer-box
 //time starts
@@ -20,10 +49,36 @@ function start_quiz()
 //answer is selected. if correct score++, incorrect time_left--
 //after answer is selected there will be a brief delay, then questionCounter++
 //next_question() is called
+function start_quiz(){
+    playButton.classList.add('hide')
+    saveButton.classList.add('hide')
+    lbButton.classList.add('hide')
+    shuffledQuestions = question_objects.sort(() =>Math.random() - .5); //need help understanding this
+    currentQuestionIndex = 0;
+    // timer_start() //should the timer be inside the function?
+    // next_question()
+    setInterval(function(){
+        timeLeft--;
+        clock.innerHTML = timeLeft;
+         below_10()
+     
+      if(timeLeft <= 0)
+            clearInterval(countdown);
+            },1000);
+    console.log("bitch");
+}
+
+function below_10(){
+    if(timeLeft <= 10)
+      clock.classList.add('below10');
+  }
+  function decrement(){
+    timeLeft = time_left - 5;
+    return countdown()
+  }    
 
 
-
-
+function next_question(){}
 
 
 
@@ -130,4 +185,4 @@ let question_objects = [
 // }
 // function restart_game() {
     
-}
+// }

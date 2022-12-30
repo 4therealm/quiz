@@ -11,19 +11,19 @@
     <section class="quiz-container flex-column">
         <!-- will always be shown -->
 
-        <div class="hud-box flex-row hide">
+        <div class="hud-box flex-row ">
             <!-- hidden on load, visible only while game is active -->
             <p class="hud-items" id="clock">60</p>
             <p class="hud-items" id="progress">0/3</p>
             <p class="hud-items" id="score">score</p>
         </div>
 
-        <div class="question-box hide">
+        <div class="question-box ">
             <!-- hidden on load, visible only while game is active -->
             current_question Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit debitis placeat veritatis laboriosam, corrupti earum similique non architecto vel, harum deleniti perspiciatis eius molestias reprehenderit voluptate cupiditate nostrum! Id, ab.
         </div>
 
-        <div class="answer-box flex-row hide">
+        <div class="answer-box flex-row">
             <!-- hidden on load, visible only while game is active -->
             <button class="answer-btns btn" data-number="1">current_question.choice1</button>
             <button class="answer-btns btn" data-number="2">current_question.choice2</button>
@@ -32,16 +32,16 @@
 
 <!-- play and leader board visible on load but hidden once game starts, at quiz end play changes to restart save and leaderboard become visible -->
         <div class="control-box flex-row">
-            <button class="btn" id="play">Play</button>
-            <button class="btn" id="leaderboard-btn">Leaderboard</button>
+            <button class="btn" id="play-btn">Play</button>
+            <button class="btn" id="lb-btn">Leaderboard</button>
             <button class="btn" id="save-btn">Save</button>
         </div>
 <!-- only visible after leaderboard is pressed, following it being pressed, anyother control buttons will hid it -->
-        <div class="leaderboard-box hide">
+        <div class="lb-box hide">
             <ul></ul>
         </div>
     </section>
 
-    <script src="/main.js"></script>
+    <script src="main.js"></script>
 </body>
 </html>
