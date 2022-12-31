@@ -119,13 +119,10 @@ function loadQuestion () {
     console.log (score);
 
     if ( index < question_pool.length ) {
-   
-
         question_count++;
         loaded_question = question_pool[ index ];
         fireQuestion ();
-    }else{
-    gameOver()}
+    }else{gameOver()}
 }
 
 
@@ -147,7 +144,7 @@ function selectAnswer ( target ) {
     console.log ( "answerSelect fired" );
     if ( target ) {
         console.log ( "Correct! well done" );
-        score++;
+        incrementScore(SCORE_POINTS)
         // make button green
     }
     if ( ! target ) {
@@ -157,6 +154,11 @@ function selectAnswer ( target ) {
         index++;    
     loadQuestion ();
 }
+incrementScore = num => {
+  score +=num
+  scoreText.innerText = score
+}
+
 function showResults() {
   resultsUi()
 
