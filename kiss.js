@@ -148,7 +148,7 @@ function selectAnswer ( target ) {
     }
     if ( ! target ) {
         console.log ( "psh, read a book" );
-        decrement = () =>{timeLeft = timeLeft - 5;}}// flash animation on the timer
+        decrementTime = () =>{timeLeft = timeLeft - 5;}}// flash animation on the timer
     saveCurrentScore = () => {localStorage.setItem('mostRecentScore', score);}
         index++;    
     loadQuestion ();
@@ -174,7 +174,7 @@ function quizTimer () {
         clock.innerHTML = timeLeft;
         below_10 ();
 
-        if ( timeLeft <= -1 ) {
+        if ( (timeLeft <= -1) || (question_count === question_pool.length) ) {
 
             clearInterval ( timer );
             gameOver()
