@@ -28,34 +28,33 @@ let finalScore;
 let question_counter
 let timeLeft = 15;
 let selectedAnswer;
-let countdown;
 const MAX_QUESTIONS = 4;
 
 //event.listeners
 
 playButton.addEventListener('click', start_quiz)
 
-function timer() {
-        countdown = setInterval(function()
+function quizTimer() {
+        timer = setInterval( () =>
         {
         timeLeft--; 
         clock.innerHTML = timeLeft;
          below_10()
         
       if(timeLeft <= 0){
-       
-        clearInterval(countdown)
-         return}
+        clearInterval(timer)}
+        //run gameOver()
        },
-       1000);
-       
-}
+       1000);}
+
+
 function below_10(){
     if(timeLeft <= 10)
       clock.classList.add('below10');
   }
   function decrement(){
     timeLeft = timeLeft - 5;
+    //flash animation on the timer
   }    
 function start_style_adjust(params) {
     controlElement.classList.add('hide');
