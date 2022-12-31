@@ -8,16 +8,17 @@ const answerButton1 = document.querySelector("#answer-1")
 
 
 play_btn.addEventListener('click', playGame)
-answerButton0.addEventListener('click', () =>{
+answerButton0.addEventListener('click', (event) =>{
     console.log("you selected answerButton0")
-    selectAnswer()
+    selectAnswer(target = loaded_question.answers[0].correct)
 })
 answerButton1.addEventListener('click', () =>{
     console.log("you selected answerButton1")
-    selectAnswer()
+    selectAnswer(target = loaded_question.answers[1].correct)
 })
 
 let index = 0;
+let score = 0;
 
 let loaded_question;
 
@@ -65,16 +66,11 @@ function loadQuestion() {
 if (index <= question_pool.length) {
     loaded_question = question_pool[index]
      console.log(loaded_question.question)
-    console.log(loaded_question.answers[0])
-    console.log(loaded_question.answers[1])
+    console.log(loaded_question.answers[0].correct)
+    // console.log(loaded_question.answers === true)
+    console.log(loaded_question.answers[1].correct)
     fireQuestion()
-}
-
-
-
-    // for (let index = 0; index < question_pool.length; index++) {
-    
-   
+} 
 }
 
 
@@ -86,7 +82,12 @@ function fireQuestion() {
     }
 
 
- function selectAnswer() {
+ function selectAnswer(EventTarget) {
+    EventTarget;
     console.log("answerSelect fired")
+    console.log(EventTarget)
+
+    // console.log(loaded_question.answers.correct)
     
  }
+
