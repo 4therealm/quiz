@@ -6,7 +6,7 @@ const hudElement = document.querySelector ( ".hud-box" );
 const questionElement = document.querySelector ( ".question-box" );
 const answerElement = document.querySelector ( ".answer-box" );
 const controlElement = document.querySelector ( ".control-box" );
-const leaderboardElement = document.querySelector ( ".lb-box" );
+const lbElement = document.querySelector ( ".lb-box" );
 const answerButton0 = document.querySelector ( "#answer-0" );
 const answerButton1 = document.querySelector ( "#answer-1" );
 const SCORE_POINTS = 100;// I THINK DOING SOME SORT OF MULTIPLIER FOR CORRECT ANSWERERS IN SUCCESSIONS
@@ -121,20 +121,27 @@ function loadQuestion () {
     
     console.log ("Your current score is " + score);
 
-    if ( index < question_pool.length ) {
+    if ( index < question_pool.length) {
         loaded_question = question_pool[ index ];
         console.log ( "Question #" + (question_count) + " is loaded" );
-        fireQuestion ();question_count++;
+        fireQuestion ();
+        question_count++;
 
     }else{gameOver()}
 }
 
 
 function gameOver(){
-  // showResults();
+  resultsUi();
  } // {resetState()}
         //run save score to save players initials and score
-      
+function resultsUi() {
+  questionElement.classList.add('hide')
+  answerElement.classList.add('hide')
+  lbElement.classList.remove('hide')
+
+  
+}
 
 function fireQuestion () {
   questionElement.innerHTML = loaded_question.question;
@@ -180,7 +187,7 @@ function quizTimer () {
         clock.innerHTML = timeLeft;
         below_10 ();
 
-        if ( (timeLeft <= -1) || (question_count === question_pool.length) ) {
+        if ( (timeLeft <= -1) || (question_count === question_pool.length +1) ) {
 
             clearInterval ( timer );
             gameOver()
