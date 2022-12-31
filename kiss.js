@@ -114,56 +114,37 @@ console.log("let the games begin")
 }
 
 function loadQuestion () {
-
-    console.log ( "loadQuestion fired" );
     localStorage.setItem('mostRecentScore', score);
-    console.log (most_recent_score);
+    console.log ( "loadQuestion fired" );
+    console.log (score);
 
     if ( index < question_pool.length ) {
+   
 
         question_count++;
         loaded_question = question_pool[ index ];
-
-        // console.log ( loaded_question.question );
-        // console.log ( loaded_question.answers[ 0 ] );
-        // console.log ( loaded_question.answers[ 1 ] );
-        
         fireQuestion ();
-    }
-    else {
-        //hide certain quiz elements and show stat panel
-        gameOver()
-      
-    }
+    }else{
+    gameOver()}
 }
 
 
 function gameOver(){
-  
+  // showResults();
   alert("game over")
-        prompt("Here are your results \n final score = (finalScore) \n\ question count = (questioncount) \n enter your initals to save high score")
-
-    if(prompt){ saveCurrentScore = () => {
-            localStorage.setItem('mostRecentScore', score)}
-            }}
-        // {resetState()}
+ } // {resetState()}
         //run save score to save players initials and score
       
 
 function fireQuestion () {
-
     console.log ( "fireQuestion...fired" );
     questionElement.innerHTML = loaded_question.question;
     // these can be put in A FOR EACH LOOP
     answerButton0.innerHTML = loaded_question.answers[ 0 ].text;
     answerButton1.innerHTML = loaded_question.answers[ 1 ].text;
-
 }
-
-
 function selectAnswer ( target ) {
     console.log ( "answerSelect fired" );
-    console.log ( target );
     if ( target ) {
         console.log ( "Correct! well done" );
         score++;
@@ -171,40 +152,37 @@ function selectAnswer ( target ) {
     }
     if ( ! target ) {
         console.log ( "psh, read a book" );
-        decrement = () =>{
-          timeLeft = timeLeft - 5;
-    // flash animation on the timer
-        }
-    }
-    index++
-    console.log("index position:" + index)
-    console.log("current score = " + score)
-    saveCurrentScore = () => {
-      localStorage.setItem('mostRecentScore', score);}
+        decrement = () =>{timeLeft = timeLeft - 5;}}// flash animation on the timer
+    saveCurrentScore = () => {localStorage.setItem('mostRecentScore', score);}
+        index++;    
     loadQuestion ();
 }
+function showResults() {
+  resultsUi()
 
-
+  
+}
+function resultsUi() {
+  questionElement.classList.add('hide')
+  answerElement.classList.add('hide')  
+}
 function quizTimer () {
-
     timer = setInterval ( () => {
 
         timeLeft = timeLeft - 1;
         clock.innerHTML = timeLeft;
         below_10 ();
 
-        if ( timeLeft <= 0 ) {
+        if ( timeLeft <= -1 ) {
 
             clearInterval ( timer );
-            // run gameOver()
+            gameOver()
 
         }
 
     }, 1000 );
 
 }
-
-
 function below_10 () {
 
     if ( timeLeft <= 10 ) {
