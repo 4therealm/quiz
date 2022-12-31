@@ -6,14 +6,13 @@ const answerElement = document.querySelector ( ".answer-box" );
 const answerButton0 = document.querySelector ( "#answer-0" );
 const answerButton1 = document.querySelector ( "#answer-1" );
 const SCORE_POINTS = 100;// I THINK DOING SOME SORT OF MULTIPLIER FOR CORRECT ANSWERERS IN SUCCESSIONS
-const score_element = document.querySelector ("#Score");
+const score_text = document.querySelector ("#score");
 //local storage interaction
 const most_recent_score = localStorage.getItem('mostRecentScore')
 const high_scores = JSON.parse(localStorage.getItem('leaderboard')) || []
 
 //other variables
 let index = 0;
-let scoreText = most_recent_score;
 let score = 0;
 let question_count = 0;
 let timeLeft = 60;
@@ -156,7 +155,7 @@ function selectAnswer ( target ) {
 }
 incrementScore = num => {
   score +=num
-  scoreText.innerText = score
+  score_text.innerText = score
 }
 
 function showResults() {
