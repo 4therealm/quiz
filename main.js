@@ -43,8 +43,9 @@ function timer() {
          below_10()
         
       if(timeLeft <= 0){
+       
         clearInterval(countdown)
-        }
+         return}
        },
        1000);
        
@@ -54,8 +55,7 @@ function below_10(){
       clock.classList.add('below10');
   }
   function decrement(){
-    timeLeft = time_left - 5;
-    return countdown()
+    timeLeft = timeLeft - 5;
   }    
 function start_style_adjust(params) {
     controlElement.classList.add('hide');
@@ -64,7 +64,7 @@ function start_style_adjust(params) {
     questionElement.classList.remove('hide');
 }
 
-//question and relative answer is generated randomly 
+
 //answer is selected. if correct score++, incorrect time_left--
 //after answer is selected there will be a brief delay, then questionCounter++
 //next_question() is called
@@ -76,12 +76,14 @@ function start_quiz(){
     start_style_adjust()
     timer()
     console.log("quiz has started")
-    next_question()
+    if(question_objects.length >= 0 ){ next_question()
+    }
+
 }
 
 function resetState(){
     question_counter++
-    question_objects.splice(currentQuestionIndex, 1)
+    question_objects.splice(question_objects, 1)
     console.log(currentQuestionIndex)
     while (answerElement.firstChild){
       answerElement.removeChild
@@ -93,7 +95,7 @@ function resetState(){
 function next_question(){
     resetState()
     console.log("next-question fired")
-    // question_objects.splice(currentQuestionIndex, 1)
+    question_objects.splice(currentQuestionIndex, 1)
     random()
     show_question(question_objects[currentQuestionIndex])   
   console.log("current question index" + currentQuestionIndex)}
@@ -107,7 +109,7 @@ function random() {
 function show_question(question) {
     console.log("show_question fired")
     questionElement.innerHTML = question_objects[currentQuestionIndex].question
-    console.log(question)
+    console.log("questionobject" + question_objects.length)
     question.answers.forEach((answer) => {
         const button = document.createElement('button');
         button.innerText = answer.text;
@@ -115,7 +117,8 @@ function show_question(question) {
         if (answer.correct) { button.dataset.correct = answer.correct; }
         button.addEventListener('click', select_answer)
         answerElement.appendChild(button);
-        console.log(answer.correct)
+        console.log(button
+            )
     });
 }
 
@@ -123,25 +126,24 @@ function select_answer(e){
     console.log("select answer fired")
     const selectedButton = e.target
     const correct = selectedButton.dataset.correct
-    console.log(correct)
+    console.log(question_counter)
     Array.from(answerButtons.children).forEach(button => {
       setStatusClass(button, button.dataset.correct)
     })
     if(correct){
         Score++
-       
-      console.log("you got it right" + Score)
+        console.log("you got it right" + Score)
+    }else{timeLeft -= 5
+        console.log("too bad")
     }
-    if (question_counter < MAX_QUESTIONS){
+    
+
+
+
        next_question()
     
     
-    } else {  
-      playButton.innerText = 'Restart'
-      playButton.classList.remove('hide')
-      saveButton.classList.remove('hide')
-      lbButton.classList.remove('hide')
-    }}
+    }
     
     function setStatusClass(element, correct) {
         clearStatusClass(element)
