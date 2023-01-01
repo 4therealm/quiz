@@ -1,1 +1,8 @@
 body{background-color: dimgray;}
+
+.correct{
+  background-color: green;
+}
+.incorrect{
+  background-color: red;
+}

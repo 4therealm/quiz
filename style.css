@@ -123,3 +123,10 @@ filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#6D90B9", en
 .hide{
     display: none;
 }
+
+.correct{
+  background-color: green;
+}
+.incorrect{
+  background-color: red;
+}
