@@ -13,9 +13,14 @@ const SCORE_POINTS = 100;// I THINK DOING SOME SORT OF MULTIPLIER FOR CORRECT AN
 const score_text = document.querySelector ("#score");
 //local storage interaction
 const most_recent_score = localStorage.getItem('mostRecentScore')
-const high_scores = JSON.parse(localStorage.getItem('leaderboard')) || []
+const high_scores = JSON.parse(localStorage.getItem('highscores')) || []
+lbElement.innerText = 
+high_scores.map(score => {
+  return `<li class="high-score">${userData.name} - ${userData.score}</li>`
+}).join("")
 
 //other variables
+
 let index = 0;
 let score = 0;
 let question_count = 1;
@@ -101,12 +106,14 @@ answerButton1.addEventListener ( 'click', () => {
     selectAnswer ( selected_answer = loaded_question.answers[ 1 ].correct );
 } );
 
+
 //functions
 function playGame () {
 console.log("let the games begin")
     quizUi();
     quizTimer ();
     loadQuestion ();
+    saveCurrentScore = () => {localStorage.setItem('mostRecentScore', score);}
 }
 function quizUi() {
 hudElement.classList.remove('hide');
@@ -115,7 +122,6 @@ answerElement.classList.remove('hide')
 controlElement.classList.add('hide')
   
 }
-
 function loadQuestion () {
     localStorage.setItem('mostRecentScore', score);
     
@@ -128,31 +134,9 @@ function loadQuestion () {
         question_count++;
 
     }else{
+      resultsUi()
       gameOver()}
       
-}
-
-
-function gameOver(){
-  console.log("Game over, bud")
-  clearInterval ( timer );
-  resultsUi();
-  saveScore();
- }
-
-function resultsUi() {
-  console.log("resultsUi() fired")
-  questionElement.classList.add('hide')
-  answerElement.classList.add('hide')
-  lbElement.classList.remove('hide')
-  controlElement.classList.remove('hide')
-  hudElement.classList.add('hide')
-  
-  
-}
-function saveScore() {
- prompt("Your score = " + most_recent_score  + "\nEnter name and click OK to save score")
-
 }
 function fireQuestion () {
   questionElement.innerHTML = loaded_question.question;
@@ -171,23 +155,43 @@ function selectAnswer ( target ) {
     if ( ! target ) {
         console.log ( "psh, read a book" );
         decrementTime = () =>{timeLeft = timeLeft - 5;}
-      }
-      // flash animation on the timer
-    saveCurrentScore = () => {localStorage.setItem('mostRecentScore', score);}
-        index++;    
+      } 
+    index++;    
     loadQuestion ();
 }
-incrementScore = num => {
+function gameOver(){
+  console.log("Game over, bud")
+  clearInterval ( timer );
+  saveScore();
+ }
+function resultsUi() {
+  console.log("resultsUi() fired")
+  questionElement.classList.add('hide')
+  answerElement.classList.add('hide')
+  lbElement.classList.remove('hide')
+  controlElement.classList.remove('hide')
+  hudElement.classList.add('hide')
+}
+function saveScore() {
+let username = prompt("Your score = " + score + "\nEnter name and click OK to save score")
+   const userData = { 
+      name: username,
+      score: score
+    };
+    if(username != null){
+   
+    high_scores.push(userData)
+    // high_scores.sort((a,b)=>{
+    //   return b.score - a.score
+    // }
+    }
+    high_scores.splice()
+    localStorage.setItem('highScores', JSON.stringify(high_scores))
+}
+function incrementScore (num){
   score +=num
   score_text.innerText = score;
 }
-
-// function leaderboardUi() {
-//   questionElement.classList.add('hide')
-//   answerElement.classList.add('hide')  
-//   // lbElement.classList.remove('hide')
-//   clockElement.classList.add('hide');
-// }
 function quizTimer () {
     timer = setInterval ( () => {
 
