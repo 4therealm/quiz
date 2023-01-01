@@ -35,12 +35,10 @@ let question_pool = [
       {text: '<js>', correct: false},
       {text: '<script>', correct: true},]},
 
-  { question:'',
+  { question:'In the statement Gary = Gary*25; do we in fact NEED that many Garys',
     answers: [
-      {text: '', correct: false},
-      {text: '', correct:false},
-      {text: '', correct:false},
-      {text: '', correct:true},
+      {text: 'Not even close, give me more!', correct:false},
+      {text: 'No we do not, that is far too many Garys', correct:true},
  ]},
   { question:'Which of the following keywords is used to define a variable in Javascript?',
     answers: [
