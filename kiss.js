@@ -14,7 +14,8 @@ const score_text = document.querySelector ( "#score" );
 // local storage interaction
 const most_recent_score = localStorage.getItem ( 'mostRecentScore' );
 const high_scores = JSON.parse ( localStorage.getItem ( "highScores" ) ) || [];
-lbElement.innerText = high_scores.map ( userData => {
+
+lbElement.innerHTML = high_scores.map ( userData => {
 
   return `<li class="high-score">
   ${
