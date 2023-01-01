@@ -1,6 +1,6 @@
 //element targeting
-const clockElement = document.getElementById ( 'clock' );
-const play_btn = document.getElementById ( "play-btn" );
+const clockElement = document.querySelector ("#clock" );
+const play_btn = document.querySelector ( "#play-btn" );
 
 const hudElement = document.querySelector ( ".hud-box" );
 const questionElement = document.querySelector ( ".question-box" );
@@ -127,22 +127,33 @@ function loadQuestion () {
         fireQuestion ();
         question_count++;
 
-    }else{gameOver()}
+    }else{
+      gameOver()}
+      
 }
 
 
 function gameOver(){
+  console.log("Game over, bud")
+  clearInterval ( timer );
   resultsUi();
- } // {resetState()}
-        //run save score to save players initials and score
+  saveScore();
+ }
+
 function resultsUi() {
+  console.log("resultsUi() fired")
   questionElement.classList.add('hide')
   answerElement.classList.add('hide')
   lbElement.classList.remove('hide')
-
+  controlElement.classList.remove('hide')
+  hudElement.classList.add('hide')
+  
   
 }
+function saveScore() {
+ prompt("Your score = " + most_recent_score  + "\nEnter name and click OK to save score")
 
+}
 function fireQuestion () {
   questionElement.innerHTML = loaded_question.question;
   // these can be put in A FOR EACH LOOP
@@ -168,26 +179,23 @@ function selectAnswer ( target ) {
 }
 incrementScore = num => {
   score +=num
-  score_text.innerText = score
+  score_text.innerText = score;
 }
 
-function showResults() {
-  resultsUi()
-
-  
-}
-function resultsUi() {
-  questionElement.classList.add('hide')
-  answerElement.classList.add('hide')  
-}
+// function leaderboardUi() {
+//   questionElement.classList.add('hide')
+//   answerElement.classList.add('hide')  
+//   // lbElement.classList.remove('hide')
+//   clockElement.classList.add('hide');
+// }
 function quizTimer () {
     timer = setInterval ( () => {
 
         timeLeft = timeLeft - 1;
-        clock.innerHTML = timeLeft;
+        clock.innerText = timeLeft;
         below_10 ();
 
-        if ( (timeLeft <= -1) || (question_count === question_pool.length +1) ) {
+        if ( (timeLeft <= -1)) {
 
             clearInterval ( timer );
             gameOver()

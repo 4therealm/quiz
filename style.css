@@ -50,15 +50,15 @@ body{
 }
 
 .hud-box{
-    justify-content: center;
-    gap: 3rem;
+    justify-content: space-evenly;
+    /* gap: 3rem; */
     align-items: center;
 }
 
 .hud-items{
     text-align: center;
    font-size: 2rem;
-   width: 30%;
+   /* width: 30%; */
 }
 
 .question-box{
@@ -92,6 +92,15 @@ body{
     height: 4rem;
     min-width: 8rem;
 }
+
+.lb-box{
+  margin: 0 auto;
+  width: 10vw;
+  border: 5px solid black;
+  list-style-type: none;
+  align-items: center;
+}
+
 .hide{
     display: none;
 }
