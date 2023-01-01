@@ -1,4 +1,5 @@
 // element targeting
+const score_text = document.querySelector ( "#score" );
 const clockElement = document.querySelector ( "#clock" );
 const play_btn = document.querySelector ( "#play-btn" );
 
@@ -7,8 +8,8 @@ const questionElement = document.querySelector ( ".question-box" );
 const answerElement = document.querySelector ( ".answer-box" );
 const controlElement = document.querySelector ( ".control-box" );
 const lbElement = document.querySelector ( ".lb-box" );
-const SCORE_POINTS = 100; // I THINK DOING SOME SORT OF MULTIPLIER FOR CORRECT ANSWERERS IN SUCCESSIONS
-const score_text = document.querySelector ( "#score" );
+
+const SCORE_POINTS = 100;
 
 // local storage interaction
 const most_recent_score = localStorage.getItem ( 'mostRecentScore' );
@@ -93,6 +94,7 @@ function playGame () {
   console.log ( "let the games begin" );
   shuffled_questions_pool = question_pool.sort(() => Math.random() - .5);
   currentQuestionIndex = 0
+  score = 0;
   quizTimer();
   quizUi();
   loadQuestion();
@@ -115,16 +117,11 @@ function fireQuestion(question){
   question.answers.forEach(answers => { //since there is an array holding the answers for each question, for each will select each answers.text and create a button with a class of btn to hold it and adding the click event listener to run the selectAnswer function on the targeted button when called. while doing this it also checks to see if the answers.correct property is true or false. if true, it adds a dataset equal to the boolean true. this data set will be used when that button is targeted.  then finally it inserts each button into the answer_element with appendChild
       const button = document.createElement('button')
       button.innerText = answers.text
-      button.classList.add('btn')
-        if (answers.correct)
-          {button.dataset.correct = answers.correct}
-      
+      button.classList.add('answer-btns')
+        if (answers.correct){button.dataset.correct = answers.correct}
       button.addEventListener('click', selectAnswer)
-      
       answerElement.appendChild(button)
-      
-      console.log(question)
-      console.log(answers)
+      console.log(answers.correct)
     });}
 
 function selectAnswer(e){
@@ -137,102 +134,58 @@ function selectAnswer(e){
     
       if (correct) {// operators are not necessary in boolean comparisons like this. this is how it looks though
         //if (correct === true){ increase the score by 1} if (correct === false){subtract time by 5 sec}
-        score++
+        incrementScore(SCORE_POINTS)
         console.log("You git it right! great job!")    
       }else {
         console.log("Pshhh, read a book")
-        decrement = () => timeLeft = timeLeft - 5; //-5 animation will go here
+        timeLeft = timeLeft - 5 //-5 animation will go here
       }
       //next is the control of how many times the next question will generate.as long as the shuffled questions length is greater than the currentquestionindex then the next question will be loaded
       if (shuffled_questions_pool.length > currentQuestionIndex + 1){
         console.log("next question coming up")
-        setTimeout( loadQuestion, 1000);//setTimeout forces a delay of 1000ms (1 sec) until the loadQuestion function is called
-      }else{console.log("game over")}
+        setTimeout( loadQuestion, 2000);//setTimeout forces a delay of 1000ms (1 sec) until the loadQuestion function is called
+      }else{
+        console.log("game over")
+        gameOver()
+      }
       currentQuestionIndex++//bumps the index up by one after each question is answered
     }
 function gameOver () {
-
+  localStorage.setItem ( 'mostRecentScore', score );
   console.log ( "Game over, bud" );
   clearInterval ( timer );
   saveScore ();
+  resultsUi()
 
 }
-function resultsUi () {
 
-  console.log ( "resultsUi() fired" );
-  questionElement.classList.add ( 'hide' );
-  answerElement.classList.add ( 'hide' );
-  lbElement.classList.remove ( 'hide' );
-  controlElement.classList.remove ( 'hide' );
-  hudElement.classList.add ( 'hide' );
-
-}
 function saveScore () {
-
   let username = prompt ( "Your score = " + score + "\nEnter name and click OK to save score" );
-  const userData = {
-
-    name: username,
-    score: score
-
-  };
-
+  const userData = {name: username,score: score};
   high_scores.push ( userData );
-  // high_scores.sort((a,b)=>{
-  // return b.score - a.score
-  // }
-
-  high_scores.splice ();
+  // high_scores.sort((a,b)=>{return b.score - a.score})
+  // high_scores.splice ();
   localStorage.setItem ( 'highScores', JSON.stringify ( high_scores ) );
-
 }
 function incrementScore ( num ) {
-
   score += num;
   score_text.innerText = score;
-  
 }
 function quizTimer () {
-
   timer = setInterval ( () => {
-
-
-
     timeLeft = timeLeft - 1;
     clock.innerText = timeLeft;
     below_10 ();
+    if ( ( timeLeft <= -1 ) ) 
+      {clearInterval ( timer );
+        gameOver ();
+      }}, 1000 );}
 
-    if ( ( timeLeft <= -1 ) ) {
-      
-
-
-      localStorage.setItem ( 'mostRecentScore', score );
-      clearInterval ( timer );
-      gameOver ();
-      
-      
-      
-    }
-
-  }, 1000 );
-
-  
-  
-}
 function below_10 () {
 
-  
-
-  if ( timeLeft <= 10 ) {
-
-    
-    
+  if ( timeLeft <= 10 ) {   
     clock.classList.add ( 'below10' );
-    
-    
-
-  }
-  
+    } 
 }
 
 function quizUi () {
@@ -241,14 +194,20 @@ function quizUi () {
   answerElement.classList.remove ( 'hide' );
   controlElement.classList.add ( 'hide' );
   }
+  function resultsUi () {
+  console.log ( "resultsUi() fired" );
+  questionElement.classList.add ( 'hide' );
+  answerElement.classList.add ( 'hide' );
+  lbElement.classList.remove ( 'hide' );
+  controlElement.classList.remove ( 'hide' );
+  hudElement.classList.add ( 'hide' );
+}
   function blankSlate() {
     clearClass(document.body)
     while (answerElement.firstChild) {
      answerElement.removeChild(answerElement.firstChild)  
     } // this will delete each button created from the previeous question until the expression is false (no more children)
    }
-  
-  
    function setClass(element, correct){
     clearClass(element)
     if (correct){
@@ -256,7 +215,6 @@ function quizUi () {
     } else {
       element.classList.add('incorrect')
     }}
-
     function clearClass(element){
       element.classList.remove('correct')
       element.classList.remove('incorrect')
