@@ -4,6 +4,7 @@
 
 
 
+
 *{
 margin: 0;
 padding: 0;
@@ -19,6 +20,10 @@ body{
 
 .btn:hover, .answer-btn:hover{
     scale: 1.08;
+
+}
+.btn{
+  background-color: deepskyblue;
 }
 #clock{
     font-size:2rem;
@@ -26,6 +31,7 @@ body{
   
   .below10{
     color: red;
+    
   }
 
 .flex-column{
@@ -40,16 +46,25 @@ body{
     flex-direction: row;
     align-items: center;
     justify-content: space-evenly;
-    /* outline: 2px solid red; */
     
     
 }
 
 .quiz-container{
-    max-width: 80vw;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+  background: hsla(212, 35%, 58%, 1);
+
+background: radial-gradient(circle, hsla(212, 35%, 58%, 1) 0%, rgb(234, 239, 247) 100%);
+
+background: -moz-radial-gradient(circle, hsla(212, 35%, 58%, 1) 0%, rgb(251, 253, 255) 100%);
+
+background: -webkit-radial-gradient(circle, hsla(212, 35%, 58%, 1) 0%, rgb(255, 255, 255) 100%);
+
+filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#6D90B9", endColorstr="#BBC7DC", GradientType=1 );
+    max-width: 60vw;
     height: 80vh; 
     margin: 5vh auto;
-    border: 5px solid;
+    border-radius: 2rem;
 }
 
 .hud-box{
@@ -70,7 +85,7 @@ body{
 
     font-weight: bold;
     font-size: 1.5rem;
-    background-color: rgba(128, 128, 128, 0.346);
+
 
 }
 
@@ -81,21 +96,23 @@ body{
 }
 
 .answer-btns{
+  box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
     min-width: 35%;
     min-height: 10vh;
 } 
 
 
 .control-box .btn{
+  box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
     height: 3rem;
     min-width: 7rem;
+    background-color:deepskyblue;
 }
 
 .lb-box{
   padding: 8px;
   gap: 1rem;
   margin: 0 auto;
-  border: 5px solid black;
   list-style-type: none;
   align-items: center;
 }

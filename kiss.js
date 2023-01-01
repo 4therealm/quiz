@@ -234,7 +234,7 @@ function selectAnswer ( target ) {
     console.log ( "psh, read a book" );
     timeLeft = timeLeft - 5;
 
-  } index = index + 1;
+  } index += 1;
   loadQuestion ();
 
 }
