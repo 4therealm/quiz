@@ -28,119 +28,63 @@ let shuffled_questions_pool, currentQuestionIndex
 
 // the array of questions
 let question_pool = [
-  {
-
-
-
-    question: 'What is 2+2',
+  { question: 'Inside which HTML element do we put the JavaScript?',
     answers: [
-      {
+      {text: '<javascript>', correct: false},
+      {text: '<scripting>', correct: false},
+      {text: '<js>', correct: false},
+      {text: '<script>', correct: true},]},
 
-
-
-        text: '22',
-        correct: false
-
-
-
-      }, {
-
-
-
-        text: '4',
-        correct: true
-
-
-
-      },
-    ]
-
-
-
-  }, {
-
-    question: 'What is 10+2',
+  { question:'',
     answers: [
-      {
-
-
-
-        text: '12',
-        correct: true
-
-
-
-      }, {
-
-
-
-        text: '2',
-        correct: false
-
-
-
-      },
-    ]
-
-
-
-  }, {
-
-
-
-    question: 'What is 10/2',
+      {text: '', correct: false},
+      {text: '', correct:false},
+      {text: '', correct:false},
+      {text: '', correct:true},
+ ]},
+  { question:'Which of the following keywords is used to define a variable in Javascript?',
     answers: [
-      {
-
-
-
-        text: '5',
-        correct: true
-
-
-
-      }, {
-
-
-
-        text: '2',
-        correct: false
-
-
-
-      },
-    ]
-
-
-
-  }, {
-
-    question: 'What is 50*2',
+      {text: 'var', correct:false},
+      {text: 'let', correct:false},
+      {text: 'Both A and B', correct:true},
+      {text: 'if()', correct:false},
+ ]},
+  { question:'Which of the following methods is used to access HTML elements using Javascript?',
     answers: [
-      {
+      {text: 'getElementbyId()', correct:false},
+      {text: 'getElementsByClassName()', correct:false},
+      {text: 'local.storage.git.html', correct:false},
+      {text: 'Both A and B', correct:true},
+ ]},
+  { question:'How can a data type be declared to be a constant type?',
+    answers: [
+      {text: 'var', correct:false},
+      {text: 'const', correct:true},
+      {text: 'for', correct:false},
+      {text: 'constant', correct:false},
+ ]},
+ { question:'How does a FOR loop start?',
+    answers: [
+      {text: 'for (i = 0; i <= 5; i++)', correct:true},
+      {text: 'for (i <= 5; i++)', correct:false},
+      {text: 'for (i = 0; i <= 5)', correct:false},
+      {text: 'for i = 1 to 5', correct:false},
+ ]},
+ { question:'How can you add a comment in a JavaScript?',
+ answers: [
+   {text: 'This is a comment', correct:false},
+   {text: '<!--This is a comment-->', correct:false},
+   {text: '//This is a comment', correct:true},
+   {text: 'declare (comment)', correct:false},
+]},
+{ question:'Arrays in JavaScript are defined by which of the following statements?',
+answers: [
+  {text: 'It is an ordered list of objects', correct:false},
+  {text: 'It is an ordered list of string', correct:false},
+  {text: 'It is an ordered list of functions', correct:false},
+  {text: 'It is an ordered list of values', correct:true},
+]},
 
-
-
-        text: '100',
-        correct: true
-
-
-
-      }, {
-
-
-
-        text: '15',
-        correct: false
-
-
-
-      },
-    ]
-
-
-
-  }
 ];
 
 // event listeners
