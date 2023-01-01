@@ -195,7 +195,7 @@ function loadQuestion () {
     loaded_question = question_pool[ index ];
     console.log ( "Question #" + ( question_count ) + " is loaded" );
     fireQuestion ();
-    question_count = question_count + 1;
+    question_count += 1;
 
 
 

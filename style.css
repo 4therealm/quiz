@@ -1,6 +1,8 @@
+/* need to style quiz container with rounded edges and box shadow, box shadow color will change when answer is correct or incorrect */
+/* buttons to look softer and more lively */
+/*  */
 
-:root{
-}
+
 
 *{
 margin: 0;
@@ -29,7 +31,8 @@ body{
 .flex-column{
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-evenly;
+    gap: 50px;
 }
 
 .flex-row{
@@ -43,8 +46,8 @@ body{
 }
 
 .quiz-container{
-    width: 80vw;
-    height: 80vh;
+    max-width: 80vw;
+    height: 80vh; 
     margin: 5vh auto;
     border: 5px solid;
 }
@@ -62,13 +65,12 @@ body{
 }
 
 .question-box{
+  
     padding: 2rem;
+
     font-weight: bold;
-    /* width: 90%; */
     font-size: 1.5rem;
-    /* margin: 0 auto; */
-    /* text-align: center; */
-    /* background-color: grey; */
+    background-color: rgba(128, 128, 128, 0.346);
 
 }
 
@@ -81,29 +83,25 @@ body{
 .answer-btns{
     min-width: 35%;
     min-height: 10vh;
-    /* text-align: center; */
-    /* font-size: 1rem; */
-    /* background-color: white; */
-
 } 
 
 
 .control-box .btn{
-    height: 4rem;
-    min-width: 8rem;
+    height: 3rem;
+    min-width: 7rem;
 }
 
 .lb-box{
+  padding: 8px;
+  gap: 1rem;
   margin: 0 auto;
-  width: 10vw;
-  height: 15vh;
   border: 5px solid black;
   list-style-type: none;
   align-items: center;
 }
 .high-score {
-  font-size: 2.8rem;
-  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+  
 }
 .hide{
     display: none;
