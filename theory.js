@@ -86,42 +86,42 @@ function fireQuestion(question){
   // firequestion pulls the selected question and answer data and places it into the html. since the answers are an array, the for each loop will execute the commands for every answer there is. making a button for each answer. and then appanding it to the answer_element
 
 
-function resetState() {
- clearStatusClass(document.body)
- while (answer_element.firstChild) {
-  answer_element.removeChild(answer_element.firstChild)  
- } // this will delete each button created from the previeous question until the expression is false (no more children)
-}
+// function blankSlate() {
+//  clearStatusClass(document.body)
+//  while (answer_element.firstChild) {
+//   answer_element.removeChild(answer_element.firstChild)  
+//  } // this will delete each button created from the previeous question until the expression is false (no more children)
+// }
 
-function selectAnswer(e){
-  const selectedButton = e.target
-  const correct = selectedButton.dataset.correct
-  //but the background color change effect here
-  Array.from(answer_element.children).forEach(button => {
-    setStatusClass(button, button.dataset.correct)//this will give the boolean data value of true or false, based on the correct property is true
-  })
-  currentQuestionIndex++
-  if (correct) {
-    score++
-    console.log(score)    
-  }
-  if (shuffled_questions.length > currentQuestionIndex + 1){//this is the control so the quiz stops at the end of the questions
-    console.log("next question coming up")
-    setTimeout( loadQuestion, 1000);
-  }
-  else{
-    console.log("game over")
-  }
-}
+// function selectAnswer(e){
+//   const selectedButton = e.target
+//   const correct = selectedButton.dataset.correct
+//   //put the background color change effect here
+//   Array.from(answer_element.children).forEach(button => {
+//     setStatusClass(button, button.dataset.correct)//this will give the boolean data value of true or false, based on the correct property is true
+//   })
+//   currentQuestionIndex++
+//   if (correct) {
+//     score++
+//     console.log(score)    
+//   }
+//   if (shuffled_questions.length > currentQuestionIndex + 1){//this is the control so the quiz stops at the end of the questions
+//     console.log("next question coming up")
+//     setTimeout( loadQuestion, 1000);
+//   }
+//   else{
+//     console.log("game over")
+//   }
+// }
 
-function setStatusClass(element, correct){
-  clearStatusClass(element)
-  if (correct){
-    element.classList.add('correct')
-  } else {
-    element.classList.add('incorrect')
-  }}
-  function clearStatusClass(element){
-    element.classList.remove('correct')
-    element.classList.remove('incorrect')
-  }
+// function setStatusClass(element, correct){
+//   clearStatusClass(element)
+//   if (correct){
+//     element.classList.add('correct')
+//   } else {
+//     element.classList.add('incorrect')
+//   }}
+//   function clearStatusClass(element){
+//     element.classList.remove('correct')
+//     element.classList.remove('incorrect')
+//   }

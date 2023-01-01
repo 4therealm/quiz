@@ -7,32 +7,25 @@ const questionElement = document.querySelector ( ".question-box" );
 const answerElement = document.querySelector ( ".answer-box" );
 const controlElement = document.querySelector ( ".control-box" );
 const lbElement = document.querySelector ( ".lb-box" );
-const answerButton0 = document.querySelector ( "#answer-0" );
-const answerButton1 = document.querySelector ( "#answer-1" );
 const SCORE_POINTS = 100; // I THINK DOING SOME SORT OF MULTIPLIER FOR CORRECT ANSWERERS IN SUCCESSIONS
 const score_text = document.querySelector ( "#score" );
+
 // local storage interaction
 const most_recent_score = localStorage.getItem ( 'mostRecentScore' );
 const high_scores = JSON.parse ( localStorage.getItem ( "highScores" ) ) || [];
 
 lbElement.innerHTML = high_scores.map ( userData => {
-
   return `<li class="high-score">
-  ${
-    userData.name
-  } - ${
-    userData.score
-  }</li>`;
-
-} ).join ( "" );
+  ${userData.name} - ${userData.score}</li>`;} ).join ( "" );
 
 // other variables
 
-let index = 0;
+
 let score = 0;
-let question_count = 1;
 let timeLeft = 60;
 let loaded_question;
+let shuffled_questions_pool, currentQuestionIndex
+
 // the array of questions
 let question_pool = [
   {
@@ -153,91 +146,68 @@ let question_pool = [
 // event listeners
 play_btn.addEventListener ( 'click', playGame );
 
-answerButton0.addEventListener ( 'click', () => {
-
-  selectAnswer ( selected_answer = loaded_question.answers[ 0 ].correct );
-
-} );
-answerButton1.addEventListener ( 'click', () => {
-
-  selectAnswer ( selected_answer = loaded_question.answers[ 1 ].correct );
-
-} );
-
-
 // functions
 function playGame () {
-
   console.log ( "let the games begin" );
-  quizUi ();
-  quizTimer ();
-  loadQuestion ();
+  shuffled_questions_pool = question_pool.sort(() => Math.random() - .5);
+  currentQuestionIndex = 0
+  quizTimer();
+  quizUi();
+  loadQuestion();
 
 }
-function quizUi () {
 
-  hudElement.classList.remove ( 'hide' );
-  questionElement.classList.remove ( 'hide' );
-  answerElement.classList.remove ( 'hide' );
-  controlElement.classList.add ( 'hide' );
-
-
-
-}
 function loadQuestion () {
-
-  localStorage.setItem ( 'mostRecentScore', score );
-
   console.log ( "Your current score is " + score );
-
-  if ( index < question_pool.length ) {
-
-    loaded_question = question_pool[ index ];
-    console.log ( "Question #" + ( question_count ) + " is loaded" );
-    fireQuestion ();
-    question_count += 1;
-
-
-
+  console.log ( "Question is loaded" );
+  blankSlate()//removes previous questions content if there is any
+  fireQuestion (shuffled_questions_pool[currentQuestionIndex]);
+  // question_count += 1;
+  //loadQuestion clears out the previous questions data and grabs the next object in the shuffled array
   }
-  else {
+  
+function fireQuestion(question){
+  console.log("question fired")
+  questionElement.innerHTML = question.question//displays the current question.question in the question_element
+  
+  question.answers.forEach(answers => { //since there is an array holding the answers for each question, for each will select each answers.text and create a button with a class of btn to hold it and adding the click event listener to run the selectAnswer function on the targeted button when called. while doing this it also checks to see if the answers.correct property is true or false. if true, it adds a dataset equal to the boolean true. this data set will be used when that button is targeted.  then finally it inserts each button into the answer_element with appendChild
+      const button = document.createElement('button')
+      button.innerText = answers.text
+      button.classList.add('btn')
+        if (answers.correct)
+          {button.dataset.correct = answers.correct}
+      
+      button.addEventListener('click', selectAnswer)
+      
+      answerElement.appendChild(button)
+      
+      console.log(question)
+      console.log(answers)
+    });}
 
-    resultsUi ();
-    gameOver ();
-
-  }
-
-
-
-}
-function fireQuestion () {
-
-  questionElement.innerHTML = loaded_question.question;
-  // these can be put in A FOR EACH LOOP
-  answerButton0.innerHTML = loaded_question.answers[ 0 ].text;
-  answerButton1.innerHTML = loaded_question.answers[ 1 ].text;
-  console.log ( "Question #" + ( question_count ) + " and it's answers are being displayed" );
-
-}
-function selectAnswer ( target ) {
-
-  console.log ( "You have chosen your answer" );
-  if ( target ) {
-
-    console.log ( "Correct! well done" );
-    incrementScore ( SCORE_POINTS );
-    // make button green
-
-  }
-  else {
-
-    console.log ( "psh, read a book" );
-    timeLeft = timeLeft - 5;
-
-  } index += 1;
-  loadQuestion ();
-
-}
+function selectAnswer(e){
+  console.log("answer has been selected")
+      const selectedButton = e.target//creates a function scoped variable to represent the event emmiter(the button clicked)
+      const correct = selectedButton.dataset.correct//the only button that will have the dataset of correct is the one that is answers.correct.true, from the previously executed function fireQuestion. so the selected button will either be correct = true, or correct = undefined(i think?)
+      Array.from(answerElement.children).forEach(button => {
+        setClass(button, button.dataset.correct)//this will give the boolean data value of true or false, based on the correct property is true
+      })//now the selected answers given data can be compared with an if statement
+    
+      if (correct) {// operators are not necessary in boolean comparisons like this. this is how it looks though
+        //if (correct === true){ increase the score by 1} if (correct === false){subtract time by 5 sec}
+        score++
+        console.log("You git it right! great job!")    
+      }else {
+        console.log("Pshhh, read a book")
+        decrement = () => timeLeft = timeLeft - 5; //-5 animation will go here
+      }
+      //next is the control of how many times the next question will generate.as long as the shuffled questions length is greater than the currentquestionindex then the next question will be loaded
+      if (shuffled_questions_pool.length > currentQuestionIndex + 1){
+        console.log("next question coming up")
+        setTimeout( loadQuestion, 1000);//setTimeout forces a delay of 1000ms (1 sec) until the loadQuestion function is called
+      }else{console.log("game over")}
+      currentQuestionIndex++//bumps the index up by one after each question is answered
+    }
 function gameOver () {
 
   console.log ( "Game over, bud" );
@@ -278,7 +248,7 @@ function incrementScore ( num ) {
 
   score += num;
   score_text.innerText = score;
-
+  
 }
 function quizTimer () {
 
@@ -291,33 +261,61 @@ function quizTimer () {
     below_10 ();
 
     if ( ( timeLeft <= -1 ) ) {
+      
 
 
-
+      localStorage.setItem ( 'mostRecentScore', score );
       clearInterval ( timer );
       gameOver ();
-
-
-
+      
+      
+      
     }
 
   }, 1000 );
 
-
-
+  
+  
 }
 function below_10 () {
 
-
+  
 
   if ( timeLeft <= 10 ) {
 
-
-
+    
+    
     clock.classList.add ( 'below10' );
-
-
+    
+    
 
   }
-
+  
 }
+
+function quizUi () {
+  hudElement.classList.remove ( 'hide' );
+  questionElement.classList.remove ( 'hide' );
+  answerElement.classList.remove ( 'hide' );
+  controlElement.classList.add ( 'hide' );
+  }
+  function blankSlate() {
+    clearClass(document.body)
+    while (answerElement.firstChild) {
+     answerElement.removeChild(answerElement.firstChild)  
+    } // this will delete each button created from the previeous question until the expression is false (no more children)
+   }
+  
+  
+   function setClass(element, correct){
+    clearClass(element)
+    if (correct){
+      element.classList.add('correct')
+    } else {
+      element.classList.add('incorrect')
+    }}
+
+    function clearClass(element){
+      element.classList.remove('correct')
+      element.classList.remove('incorrect')
+    }
