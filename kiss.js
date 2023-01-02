@@ -92,9 +92,9 @@ play_btn.addEventListener ( 'click', playGame );
 // functions
 function playGame () {
   console.log ( "let the games begin" );
+  restart()
   shuffled_questions_pool = question_pool.sort(() => Math.random() - .5);
-  currentQuestionIndex = 0
-  score = 0;
+  currentQuestionIndex = 0;
   quizTimer();
   quizUi();
   loadQuestion();
@@ -158,7 +158,12 @@ function gameOver () {
   resultsUi()
 
 }
-
+function restart(){
+  score = 0;
+  timeLeft = 120;
+  score_text.innerText = score;
+  clockElement.innerText= timeLeft
+}
 function saveScore () {
   let username = prompt ( "Your score = " + score + "\nEnter name and click OK to save score" );
   const userData = {name: username,score: score};
@@ -192,6 +197,7 @@ function quizUi () {
   questionElement.classList.remove ( 'hide' );
   answerElement.classList.remove ( 'hide' );
   controlElement.classList.add ( 'hide' );
+  lbElement.classList.add('hide')
   }
   function resultsUi () {
   console.log ( "resultsUi() fired" );
