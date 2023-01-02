@@ -2,6 +2,7 @@
 const score_text = document.querySelector ( "#score" );
 const clockElement = document.querySelector ( "#clock" );
 const play_btn = document.querySelector ( "#play-btn" );
+const restart_btn = document.querySelector("#restart")
 
 const hudElement = document.querySelector ( ".hud-box" );
 const questionElement = document.querySelector ( ".question-box" );
@@ -36,7 +37,7 @@ let question_pool = [
       {text: '<js>', correct: false},
       {text: '<script>', correct: true},]},
 
-  { question:'In the statement Gary = Gary*25; do we in fact NEED that many Garys',
+  { question:'In the statement let Gary = Gary*25; do we in fact NEED that many Garys',
     answers: [
       {text: 'Not even close, give me more!', correct:false},
       {text: 'that is far too many Garys', correct:true},
@@ -203,9 +204,9 @@ function quizUi () {
   console.log ( "resultsUi() fired" );
   questionElement.classList.add ( 'hide' );
   answerElement.classList.add ( 'hide' );
-  lbElement.classList.remove ( 'hide' );
-  controlElement.classList.remove ( 'hide' );
   hudElement.classList.add ( 'hide' );
+  lbElement.classList.remove ( 'hide' );
+  restart_btn.classList.remove( 'hide')
 }
   function blankSlate() {
     clearClass(document.body)

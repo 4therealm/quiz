@@ -68,6 +68,7 @@ body{
     max-width: 60vw;
     height: 80vh; 
     margin: 5vh auto;
+    border: 5px solid deepskyblue;
     border-radius: 2rem;
 }
 
