@@ -95,8 +95,7 @@ function playGame () {
   restart()
   shuffled_questions_pool = question_pool.sort(() => Math.random() - .5);
   currentQuestionIndex = 0;
-  quizTimer();
-  quizUi();
+
   loadQuestion();
 
 }
@@ -163,11 +162,12 @@ function restart(){
   timeLeft = 120;
   score_text.innerText = score;
   clockElement.innerText= timeLeft
+  quizTimer()
+  quizUi();
 }
 function saveScore () {
   let username = prompt ( "Your score = " + score + "\nEnter name and click OK to save score" );
   const userData = {name: username,score: score};
-  
   high_scores.push ( userData );
   localStorage.setItem ( 'highScores', JSON.stringify ( high_scores ) );
 }
@@ -189,7 +189,7 @@ function below_10 () {
 
   if ( timeLeft <= 10 ) {   
     clock.classList.add ( 'below10' );
-    } 
+    } else {clockElement.classList.remove('below10')}
 }
 
 function quizUi () {
