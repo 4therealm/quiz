@@ -160,6 +160,7 @@ body{
 }
 .btn{
   letter-spacing: normal;
+  color: black;
 }
 #clock{
     font-size:0.5 rem;
@@ -237,8 +238,7 @@ body{
   align-items: center;
 }
 .high-score {
-  font-size: 1rem;
-  
+    font-size: 1rem;
 }
 .hide{
     display: none;

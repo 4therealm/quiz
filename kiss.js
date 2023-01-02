@@ -205,7 +205,7 @@ function quizUi () {
     clearClass(document.body)
     while (answerElement.firstChild) {
      answerElement.removeChild(answerElement.firstChild)  
-    } // this will delete each button created from the previeous question until the expression is false (no more children)
+    } // this will delete each button created from the previous question until the expression is false (no more children)
    }
    function setClass(element, correct){
     clearClass(element)
