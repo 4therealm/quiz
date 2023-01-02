@@ -20,7 +20,7 @@ body{
     max-height: 100vh;
 }
 
-.btn:hover, .answer-btns:hover{
+.btn:hover{
     scale: 1.05;
     cursor: pointer;
 
@@ -162,6 +162,10 @@ body{
 .btn{
   letter-spacing: normal;
   color: black;
+}
+.btn:hover{
+  scale: 1;
+  border: 10px solid slateblue;
 }
 #clock{
     font-size:0.5 rem;

@@ -96,7 +96,8 @@ function playGame () {
   restart()
   shuffled_questions_pool = question_pool.sort(() => Math.random() - .5);
   currentQuestionIndex = 0;
-
+  quizUi();
+  quizTimer();
   loadQuestion();
 
 }
@@ -135,7 +136,7 @@ function selectAnswer(e){
       if (correct) {// operators are not necessary in boolean comparisons like this. this is how it looks though
         //if (correct === true){ increase the score by 1} if (correct === false){subtract time by 5 sec}
         incrementScore(SCORE_POINTS)
-        console.log("You git it right! great job!")    
+        console.log("You got it right! great job!")    
       }else {
         console.log("Pshhh, read a book")
         timeLeft = timeLeft - 20 //-5 animation will go here
@@ -163,8 +164,6 @@ function restart(){
   timeLeft = 120;
   score_text.innerText = score;
   clockElement.innerText= timeLeft
-  quizTimer()
-  quizUi();
 }
 function saveScore () {
   let username = prompt ( "Your score = " + score + "\nEnter name and click OK to save score" );
@@ -206,7 +205,7 @@ function quizUi () {
   answerElement.classList.add ( 'hide' );
   hudElement.classList.add ( 'hide' );
   lbElement.classList.remove ( 'hide' );
-  restart_btn.classList.remove( 'hide')
+  controlElement.classList.remove('hide');
 }
   function blankSlate() {
     clearClass(document.body)
