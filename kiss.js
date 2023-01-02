@@ -23,7 +23,7 @@ lbElement.innerHTML = high_scores.map ( userData => {
 
 
 let score = 0;
-let timeLeft = 60;
+let timeLeft = 600;
 let loaded_question;
 let shuffled_questions_pool, currentQuestionIndex
 
@@ -39,7 +39,7 @@ let question_pool = [
   { question:'In the statement Gary = Gary*25; do we in fact NEED that many Garys',
     answers: [
       {text: 'Not even close, give me more!', correct:false},
-      {text: 'No we do not, that is far too many Garys', correct:true},
+      {text: 'that is far too many Garys', correct:true},
  ]},
   { question:'Which of the following keywords is used to define a variable in Javascript?',
     answers: [
@@ -143,7 +143,7 @@ function selectAnswer(e){
       //next is the control of how many times the next question will generate.as long as the shuffled questions length is greater than the currentquestionindex then the next question will be loaded
       if (shuffled_questions_pool.length > currentQuestionIndex + 1){
         console.log("next question coming up")
-        setTimeout( loadQuestion, 2000);//setTimeout forces a delay of 1000ms (1 sec) until the loadQuestion function is called
+        setTimeout( loadQuestion, 1000);//setTimeout forces a delay of 1000ms (1 sec) until the loadQuestion function is called
       }else{
         console.log("game over")
         gameOver()
@@ -162,9 +162,8 @@ function gameOver () {
 function saveScore () {
   let username = prompt ( "Your score = " + score + "\nEnter name and click OK to save score" );
   const userData = {name: username,score: score};
+  
   high_scores.push ( userData );
-  // high_scores.sort((a,b)=>{return b.score - a.score})
-  // high_scores.splice ();
   localStorage.setItem ( 'highScores', JSON.stringify ( high_scores ) );
 }
 function incrementScore ( num ) {

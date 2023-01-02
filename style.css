@@ -2,7 +2,9 @@
 /* buttons to look softer and more lively */
 /*  */
 
-
+:root{
+  --button-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+}
 
 
 *{
@@ -19,7 +21,7 @@ body{
 }
 
 .btn:hover, .answer-btns:hover{
-    scale: 1.08;
+    scale: 1.04;
 
 }
 .btn{
@@ -52,15 +54,9 @@ body{
 
 .quiz-container{
   box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
-  background: hsla(212, 35%, 58%, 1);
+  /* background: hsla(212, 35%, 58%, 1); */
 
-background: radial-gradient(circle, hsla(212, 35%, 58%, 1) 0%, rgb(234, 239, 247) 100%);
-
-background: -moz-radial-gradient(circle, hsla(212, 35%, 58%, 1) 0%, rgb(251, 253, 255) 100%);
-
-background: -webkit-radial-gradient(circle, hsla(212, 35%, 58%, 1) 0%, rgb(255, 255, 255) 100%);
-
-filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#6D90B9", endColorstr="#BBC7DC", GradientType=1 );
+background: radial-gradient(circle, hsla(212, 35%, 58%, 1) 0%, rgb(244, 244, 244) 100%);
     max-width: 60vw;
     height: 80vh; 
     margin: 5vh auto;
@@ -69,7 +65,6 @@ filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#6D90B9", en
 
 .hud-box{
     justify-content: space-evenly;
-    /* gap: 3rem; */
     align-items: center;
 }
 
@@ -80,9 +75,7 @@ filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#6D90B9", en
 }
 
 .question-box{
-  
     padding: 2rem;
-
     font-weight: bold;
     font-size: 1.5rem;
 
@@ -90,7 +83,7 @@ filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#6D90B9", en
 }
 
 .answer-box{
-  flex-direction: column;
+  flex-direction: row;
   flex-wrap: wrap;
     align-items: center;
     max-height: fit-content;
@@ -101,16 +94,18 @@ filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#6D90B9", en
 
 .answer-btns{
   flex-shrink: 1;
-  box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
-    width: 80%;
-    height:6vh;
+  box-shadow: var(--button-shadow);
+    width: 40%;
+    min-height:10vh;
     background-color: deepskyblue;
     border-radius: .5rem;
+    font-weight: bolder;
 } 
 
 
 .control-box .btn{
-  box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+  font-size: 1.5rem;
+  box-shadow:var(--button-shadow);
     height: 3rem;
     min-width: 7rem;
     background-color:deepskyblue;
@@ -136,4 +131,36 @@ filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#6D90B9", en
 }
 .incorrect{
   background-color: red;
+}
+
+
+@media screen and (min-width: 320px) and (max-width: 480px) {
+  *{
+    font-size: 8px;
+  }
+  .flex-column{
+    gap: 0;
+    justify-content: center;
+  }
+  .answer-box{
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 0;
+  }
+  .answer-btns{
+    min-height: 5vh;
+    width: 80%;
+
+  }
+  .control-box .btn{
+    font-size: 1.5rem;
+    box-shadow:var(--button-shadow);
+    height: 2rem;
+    min-width: 80%;
+    background-color:deepskyblue;
+  }
+  .control-box{
+    flex-direction: column;
+    gap: 5px;
+  }
 }
