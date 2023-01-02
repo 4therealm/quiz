@@ -165,7 +165,9 @@ body{
 }
 .btn:hover{
   scale: 1;
-  border: 10px solid slateblue;
+}
+.btn:active{
+  
 }
 #clock{
     font-size:0.5 rem;
