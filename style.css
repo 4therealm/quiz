@@ -135,32 +135,98 @@ background: radial-gradient(circle, hsla(212, 35%, 58%, 1) 0%, rgb(244, 244, 244
 
 
 @media screen and (min-width: 320px) and (max-width: 480px) {
-  *{
-    font-size: 8px;
-  }
-  .flex-column{
-    gap: 0;
+  body{
+    display: flex;
+    flex-direction: column;
     justify-content: center;
-  }
-  .answer-box{
-    flex-direction: column;
-    flex-wrap: nowrap;
-    gap: 0;
-  }
-  .answer-btns{
-    min-height: 5vh;
-    width: 80%;
-
-  }
-  .control-box .btn{
-    font-size: 1.5rem;
-    box-shadow:var(--button-shadow);
-    height: 2rem;
-    min-width: 80%;
-    background-color:deepskyblue;
-  }
-  .control-box{
-    flex-direction: column;
-    gap: 5px;
-  }
+    box-sizing: border-box;
+    background-color: slateblue;
+    max-width: 100vw;
+    max-height: 100vh;
 }
+
+.btn:active, .answer-btns:active{
+    scale: 1.04;
+
+}
+.btn{
+  background-color: deepskyblue;
+}
+#clock{
+    font-size:0.5 rem;
+  }
+  
+  .below10{
+    color: red;
+    
+  }
+
+.flex-column{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap: 50px;
+}
+
+.flex-row{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    
+    
+}
+
+.quiz-container{
+    max-width: 1000vw;
+    height: 100vh; 
+    border-radius: 0rem;
+    margin: 0;
+}
+
+.hud-box{
+    margin-top: 20px;
+}
+.question-box{
+    padding: 1rem;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+.answer-box{
+    flex-direction: column;
+    max-height: fit-content;
+    gap: 10px;
+    margin-bottom: 1rem;
+}
+.answer-btns{
+  box-shadow: var(--button-shadow);
+    width: 80%;
+    min-height:10vh;
+    background-color: deepskyblue;
+    border-radius: .5rem;
+    font-weight: bolder;
+} 
+
+
+.control-box .btn{
+  font-size: 1.5rem;
+  box-shadow:var(--button-shadow);
+    height: 3rem;
+    min-width: 7rem;
+    background-color:deepskyblue;
+}
+
+.lb-box{
+  padding: 8px;
+  gap: 1rem;
+  margin: 0 auto;
+  list-style-type: none;
+  align-items: center;
+}
+.high-score {
+  font-size: 1.5rem;
+  
+}
+.hide{
+    display: none;
+}}
