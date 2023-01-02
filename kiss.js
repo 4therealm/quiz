@@ -23,7 +23,7 @@ lbElement.innerHTML = high_scores.map ( userData => {
 
 
 let score = 0;
-let timeLeft = 600;
+let timeLeft = 120;
 let loaded_question;
 let shuffled_questions_pool, currentQuestionIndex
 
@@ -117,7 +117,7 @@ function fireQuestion(question){
   question.answers.forEach(answers => { //since there is an array holding the answers for each question, for each will select each answers.text and create a button with a class of btn to hold it and adding the click event listener to run the selectAnswer function on the targeted button when called. while doing this it also checks to see if the answers.correct property is true or false. if true, it adds a dataset equal to the boolean true. this data set will be used when that button is targeted.  then finally it inserts each button into the answer_element with appendChild
       const button = document.createElement('button')
       button.innerText = answers.text
-      button.classList.add('answer-btns')
+      button.classList.add('btn')
         if (answers.correct){button.dataset.correct = answers.correct}
       button.addEventListener('click', selectAnswer)
       answerElement.appendChild(button)
@@ -138,7 +138,7 @@ function selectAnswer(e){
         console.log("You git it right! great job!")    
       }else {
         console.log("Pshhh, read a book")
-        timeLeft = timeLeft - 5 //-5 animation will go here
+        timeLeft = timeLeft - 20 //-5 animation will go here
       }
       //next is the control of how many times the next question will generate.as long as the shuffled questions length is greater than the currentquestionindex then the next question will be loaded
       if (shuffled_questions_pool.length > currentQuestionIndex + 1){
