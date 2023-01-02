@@ -136,7 +136,6 @@ function selectAnswer(e){
       if (correct) {// operators are not necessary in boolean comparisons like this. this is how it looks though
         //if (correct === true){ increase the score by 1} if (correct === false){subtract time by 5 sec}
         incrementScore(SCORE_POINTS)
-        setClass(element, correct)
         console.log("You got it right! great job!")    
       }else {
         console.log("Pshhh, read a book")

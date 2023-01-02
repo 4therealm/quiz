@@ -137,7 +137,8 @@ body{
 }
 
 .correct{
-  box-shadow: 0px 0px 20px 15px rgba(0,255,19,1);
+  /* box-shadow: 0px 0px 20px 15px rgba(0,255,19,1); */
+  background-color: springgreen;
 }
 .incorrect{
     background-color: red;
@@ -252,7 +253,8 @@ body{
     display: none;
 }
 .correct{
-  box-shadow: 0px 0px 10px 15px rgba(0,255,19,1);
+  background-color: green;
+  /* box-shadow: 0px 0px 10px 15px rgba(0,255,19,1); */
 }
 .incorrect{
   background-color: red;
