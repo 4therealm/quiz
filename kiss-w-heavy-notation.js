@@ -46,8 +46,8 @@ let question_pool = [
     answers: [
       {text: 'var', correct:false},
       {text: 'let', correct:false},
-      {text: 'Both A and B', correct:true},
-      {text: 'if()', correct:false},
+      {text: 'var, let, const', correct:true},
+      {text: 'const', correct:false},
  ]},
   { question:'Which of the following methods is used to access HTML elements using Javascript?',
     answers: [
@@ -77,13 +77,7 @@ let question_pool = [
    {text: '//This is a comment', correct:true},
    {text: 'declare (comment)', correct:false},
 ]},
-{ question:'Arrays in JavaScript are defined by which of the following statements?',
-answers: [
-  {text: 'It is an ordered list of objects', correct:false},
-  {text: 'It is an ordered list of string', correct:false},
-  {text: 'It is an ordered list of functions', correct:false},
-  {text: 'It is an ordered list of values', correct:true},
-]},
+
 
 ];
 
@@ -105,21 +99,22 @@ function playGame () {
 function loadQuestion () {
   console.log ( "Your current score is " + score );
   console.log ( "Question is loaded" );
-  blankSlate()//removes previous questions content if there is any
+  blankSlate()
   fireQuestion (shuffled_questions_pool[currentQuestionIndex]);
-  // question_count += 1;
-  //loadQuestion clears out the previous questions data and grabs the next object in the shuffled array
+
   }
   
 function fireQuestion(question){
   console.log("question fired")
-  questionElement.innerHTML = question.question//displays the current question.question in the question_element
+  questionElement.innerHTML = question.question
   
-  question.answers.forEach(answers => { //since there is an array holding the answers for each question, for each will select each answers.text and create a button with a class of btn to hold it and adding the click event listener to run the selectAnswer function on the targeted button when called. while doing this it also checks to see if the answers.correct property is true or false. if true, it adds a dataset equal to the boolean true. this data set will be used when that button is targeted.  then finally it inserts each button into the answer_element with appendChild
+  question.answers.forEach(answers => { //since there is an array holding the answers for each question, the foreach loop will select each answers.text and create a button with a class of btn to hold it and adding the click event listener to run the selectAnswer function on the targeted button when called. while doing this it also checks to see if the answers.correct property is true or false. if true, it adds a dataset equal to the boolean true. this data set will be used when that button is targeted.  then finally it inserts each button into the answer_element with appendChild
       const button = document.createElement('button')
       button.innerText = answers.text
       button.classList.add('btn')
+
         if (answers.correct){button.dataset.correct = answers.correct}
+
       button.addEventListener('click', selectAnswer)
       answerElement.appendChild(button)
       console.log(answers.correct)
@@ -136,7 +131,6 @@ function selectAnswer(e){
       if (correct) {// operators are not necessary in boolean comparisons like this. this is how it looks though
         //if (correct === true){ increase the score by 1} if (correct === false){subtract time by 5 sec}
         incrementScore(SCORE_POINTS)
-        setClass(element, correct)
         console.log("You got it right! great job!")    
       }else {
         console.log("Pshhh, read a book")
@@ -150,7 +144,7 @@ function selectAnswer(e){
         console.log("game over")
         gameOver()
       }
-      currentQuestionIndex++//bumps the index up by one after each question is answered
+      currentQuestionIndex++ //bumps the index up by one after each question is answered
     }
 function gameOver () {
   localStorage.setItem ( 'mostRecentScore', score );
@@ -162,7 +156,7 @@ function gameOver () {
 }
 function restart(){
   score = 0;
-  timeLeft = 120;
+  timeLeft = 1120;
   score_text.innerText = score;
   clockElement.innerText= timeLeft
 }
@@ -181,6 +175,7 @@ function quizTimer () {
     timeLeft = timeLeft - 1;
     clock.innerText = timeLeft;
     below_10 ();
+    
     if ( ( timeLeft <= -1 ) ) 
       {clearInterval ( timer );
         gameOver ();
