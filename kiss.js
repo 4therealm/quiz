@@ -1,16 +1,16 @@
 // dynamic element targeting
 const score_text = document.querySelector ( "#score" );
 const clockElement = document.querySelector ( "#clock" );
-const play_btn = document.querySelector ( "#play-btn" );
-const restart_btn = document.querySelector("#restart")
-
+//element targeting
 const hudElement = document.querySelector ( ".hud-box" );
 const questionElement = document.querySelector ( ".question-box" );
 const answerElement = document.querySelector ( ".answer-box" );
 const controlElement = document.querySelector ( ".control-box" );
 const lbElement = document.querySelector ( ".lb-box" );
 
-const SCORE_POINTS = 100;
+//button targeting
+const play_btn = document.querySelector ( "#play-btn" );
+const restart_btn = document.querySelector("#restart")
 
 // local storage interaction
 const most_recent_score = localStorage.getItem ( 'mostRecentScore' );
@@ -22,6 +22,7 @@ lbElement.innerHTML = high_scores.map ( userData => {
 
 // other variables
 
+const SCORE_POINTS = 100;
 
 let score = 0;
 let timeLeft = 120;
@@ -181,7 +182,6 @@ function quizTimer () {
       }}, 1000 );}
 
 function below_10 () {
-
   if ( timeLeft <= 10 ) {   
     clock.classList.add ( 'below10' );
     } else {clockElement.classList.remove('below10')}
