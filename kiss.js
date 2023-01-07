@@ -27,7 +27,8 @@ const SCORE_POINTS = 100;
 let score = 0;
 let timeLeft = 120;
 let loaded_question;
-let shuffled_questions_pool, currentQuestionIndex
+let shuffled_questions_pool;
+let currentQuestionIndex;
 
 // the array of questions
 let question_pool = [
@@ -114,7 +115,7 @@ function fireQuestion(question){
       button.innerText = answers.text
       button.classList.add('btn')
 
-        if (answers.correct){button.dataset.correct = answers.correct}
+    if (answers.correct){button.dataset.correct = answers.correct}
 
       button.addEventListener('click', selectAnswer)
       answerElement.appendChild(button)
@@ -125,7 +126,7 @@ function selectAnswer(e){
   console.log("answer has been selected")
       const selectedButton = e.target
       const correct = selectedButton.dataset.correct
-      Array.from(answerElement.children).forEach(button => {
+    Array.from(answerElement.children).forEach(button => {
         setClass(button, button.dataset.correct)
       })
     
