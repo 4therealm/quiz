@@ -8,7 +8,8 @@ Deployed: https://4therealm.github.io/quiz/
 
 <img src="/images/screencapture-4therealm-github-io-quiz-2023-01-07-08_38_32.png">  
 <img src="/images/duringQuiz>   
-
+ 
+ 
 ## User Story
 AS A coding boot camp student
 I WANT to take a timed quiz on JavaScript fundamentals that stores high scores
